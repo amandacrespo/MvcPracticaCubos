@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MvcnetCoreUtilidades.Helpers;
 using MvcPracticaCubos.Data;
 using MvcPracticaCubos.Repositories;
 
@@ -14,6 +15,7 @@ string connectionString = builder.Configuration.GetConnectionString("SqlClaseMyS
 builder.Services.AddDbContext<PracticaContext>(options => options.UseMySQL(connectionString));
 
 builder.Services.AddTransient<RepositoryCubos>();
+builder.Services.AddSingleton<HelperPathProvider>();
 
 var app = builder.Build();
 
@@ -28,6 +30,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseSession();
 app.UseRouting();
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
@@ -35,7 +38,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Cubos}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 app.Run();
