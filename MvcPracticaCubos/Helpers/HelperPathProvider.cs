@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting.Server.Features;
 
 namespace MvcnetCoreUtilidades.Helpers
 {
-    public enum Folders { Images, Facturas, Uploads, Temporal}
+    public enum Folders { Cubos }
 
     public class HelperPathProvider
     {
@@ -22,14 +22,8 @@ namespace MvcnetCoreUtilidades.Helpers
 
             switch (folder)
             {
-                case Folders.Images:
-                    carpeta = "images";
-                    break;
-                case Folders.Facturas:
-                    carpeta = "facturas";
-                    break;
-                case Folders.Uploads:
-                    carpeta = "uploads";
+                case Folders.Cubos:
+                    carpeta = "cubos";
                     break;
                 default:
                     carpeta = "temporal";
@@ -45,17 +39,10 @@ namespace MvcnetCoreUtilidades.Helpers
         {
             string carpeta = "";
 
-            // Determina la carpeta pública según el tipo de archivo
             switch (folder)
             {
-                case Folders.Images:
-                    carpeta = "images";
-                    break;
-                case Folders.Facturas:
-                    carpeta = "facturas";
-                    break;
-                case Folders.Uploads:
-                    carpeta = "uploads";
+                case Folders.Cubos:
+                    carpeta = "cubos";
                     break;
                 default:
                     carpeta = "temporal";
@@ -66,33 +53,5 @@ namespace MvcnetCoreUtilidades.Helpers
             string publicPath = "/" + carpeta + "/" + fileName.ToLower();
             return publicPath;
         }
-
-        public string MapPathUrl(string fileName, Folders folder)
-        {
-            string carpeta = "";
-
-            switch (folder)
-            {
-                case Folders.Images:
-                    carpeta = "images";
-                    break;
-                case Folders.Facturas:
-                    carpeta = "facturas";
-                    break;
-                case Folders.Uploads:
-                    carpeta = "uploads";
-                    break;
-                default:
-                    carpeta = "temporal";
-                    break;
-            }
-
-            var addresses = this.server.Features.Get<IServerAddressesFeature>().Addresses;
-
-            string rootPath = this.hostEnvironment.WebRootPath;
-            string path = Path.Combine(rootPath, carpeta, fileName);
-            return path;
-        }
-
     }
 }

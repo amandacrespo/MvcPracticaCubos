@@ -49,16 +49,15 @@
                 @Html.DisplayFor(modelItem => item.Marca)
             </td>
             <td>
-                <img src="~/cubos/@item.Imagen" width="100"/>
+                <img src="~/cubos/@item.Imagen" width="120"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Precio)
             </td>
             <td>
-                <a asp-controller="Cubos" asp-action="Details" asp-route-id="@item.IdCubo">Details</a>
-                
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a asp-controller="Cubos" asp-action="Details" asp-route-id="@item.IdCubo">Detalles</a> |
+                <a asp-controller="Cubos" asp-action="Edit" asp-route-id="@item.IdCubo">Editar</a> |
+                    <a asp-controller="Cubos" asp-action="Delete" asp-route-id="@item.IdCubo">Borrar</a>
             </td>
         </tr>
 }
